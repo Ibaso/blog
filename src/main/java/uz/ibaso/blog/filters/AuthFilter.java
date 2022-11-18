@@ -1,9 +1,12 @@
 package uz.ibaso.blog.filters;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import uz.ibaso.blog.db.dto.ErrorMessageDto;
+import uz.ibaso.blog.db.entity.UserEntity;
+import uz.ibaso.blog.mappers.AuthMapper;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,6 +19,8 @@ import java.io.IOException;
 @Order(2)
 public class AuthFilter extends OncePerRequestFilter {
     private Integer UNAUTHORIZED_CODE = 401;
+    @Autowired
+    AuthMapper mapper;
 
     @Override
 
@@ -31,6 +36,14 @@ public class AuthFilter extends OncePerRequestFilter {
             return;
 
         }
+        if (authorization.startsWith("Bearer ")){
+            String token = authorization.split(" ")[1];
+            System.out.println(token);
+            UserEntity userEntity = mapper.findUserByToken(token);
+            System.out.println(userEntity);
+        }
+
+
         filterChain.doFilter(request, response);
     }
 

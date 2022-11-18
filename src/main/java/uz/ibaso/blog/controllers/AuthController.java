@@ -2,11 +2,9 @@ package uz.ibaso.blog.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.ibaso.blog.db.dto.LoginPasswordDto;
+import uz.ibaso.blog.db.dto.UsernameTokenDto;
 import uz.ibaso.blog.db.entity.UserEntity;
 import uz.ibaso.blog.services.AuthService;
 import uz.ibaso.blog.utils.consts.ConstUri;
@@ -25,6 +23,11 @@ public class AuthController {
             return ResponseEntity.ok(user);
         }
         return ResponseEntity.status(512).body("Username yoki parol xato");
+    }
+
+    @PutMapping("logout")
+    public void logout(@RequestBody UsernameTokenDto dto) {
+            service.setToken(dto);
     }
 
 }

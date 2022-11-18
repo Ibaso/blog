@@ -2,6 +2,7 @@ package uz.ibaso.blog.services;
 
 import org.springframework.stereotype.Service;
 import uz.ibaso.blog.db.dto.LoginPasswordDto;
+import uz.ibaso.blog.db.dto.UsernameTokenDto;
 import uz.ibaso.blog.db.entity.UserEntity;
 import uz.ibaso.blog.exceptions.UserNotFoundException;
 import uz.ibaso.blog.mappers.AuthMapper;
@@ -27,7 +28,15 @@ public class AuthService {
         }
         String token = generateNewToken();
         user.setToken(token);
+        UsernameTokenDto dto = new UsernameTokenDto(user.getUsername(), token);
+        mapper.setToken(dto);
         return user;
+    }
+    public void setToken(UsernameTokenDto dto){
+
+
+
+        mapper.setToken(dto);
     }
 
 

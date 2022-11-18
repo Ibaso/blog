@@ -5,5 +5,12 @@
     <select id="findUser"  resultType="uz.ibaso.blog.db.entity.UserEntity">
         select * from users where username = #{login}
    </select>
+    <update id="setToken" parameterType="uz.ibaso.blog.db.dto.UsernameTokenDto">
+        update  users set token = #{token} where username = #{username}
+    </update>
+    <select id="findUserByToken" resultType="uz.ibaso.blog.db.entity.UserEntity" >
+        select * from users where token = #{token}
+    </select>
+
 
 </mapper>
