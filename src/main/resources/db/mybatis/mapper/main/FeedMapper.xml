@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="uz.ibaso.blog.mappers.FeedMapper">
+
+   <select id="selectAll" resultType="uz.ibaso.blog.db.dto.OutPostDto">
+       select post.id, user_id, screen_name, username, content, post.created_date, like_count, repost_count, comment_count,
+              parent_id, users.username as parent_username from post
+           left join users on post.user_id = users.id where parent_id=-1 order by created_date desc
+   </select>
+
+</mapper>

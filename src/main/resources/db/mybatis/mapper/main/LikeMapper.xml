@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="uz.ibaso.blog.mappers.LikeMapper">
+    <select id="selectLike" resultType="uz.ibaso.blog.db.dto.LikeDto">
+        select liked_user_id, post_id  from likes where liked_user_id = #{user_id} and post_id = #{id}
+    </select>
+<insert id="insertLike" parameterType="uz.ibaso.blog.db.dto.LikeDto" >
+    insert into likes (liked_user_id, post_id) values (#{liked_user_id},#{post_id})
+</insert>
+    <delete id="deleteLike" parameterType="uz.ibaso.blog.db.dto.LikeDto">
+        delete from likes where liked_user_id =#{user_id} and post_id = #{id}
+    </delete>
+    <update id="updateLikeCount">
+        update post set like_count = like_count +#{increment} where id=#{post_id}
+    </update>
+
+</mapper>

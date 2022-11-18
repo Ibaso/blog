@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="uz.ibaso.blog.mappers.UsersMapper">
+
+    <select id="getUserByUserName" resultType="uz.ibaso.blog.db.dto.UserDto">
+        select screen_name, username, created_date, is_private from users where username = #{username}
+        </select>
+
+</mapper>
