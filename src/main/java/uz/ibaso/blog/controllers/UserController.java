@@ -2,7 +2,9 @@ package uz.ibaso.blog.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import uz.ibaso.blog.db.dto.SignUpDto;
 import uz.ibaso.blog.db.dto.UserDto;
+import uz.ibaso.blog.db.entity.UserEntity;
 import uz.ibaso.blog.services.UsersService;
 import uz.ibaso.blog.utils.consts.ConstUri;
 
@@ -22,6 +24,11 @@ public class UserController {
             System.out.println(key + " : " + value);
         });
       return   service.getUserByUserName(username);
+    }
+    @PostMapping("/signup")
+    public UserDto insertUser(@RequestBody SignUpDto signUpDto ){
+        service.insertUser(signUpDto);
+        return service.getUserByUserName(signUpDto.getUsername());
     }
 
 }

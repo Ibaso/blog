@@ -26,7 +26,7 @@ public class AuthFilter extends OncePerRequestFilter {
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader("Authorization");
-        if (request.getRequestURI().endsWith("login")) {
+        if (request.getRequestURI().endsWith("login") || request.getRequestURI().endsWith("signup")) {
             filterChain.doFilter(request, response);
             return;
         }

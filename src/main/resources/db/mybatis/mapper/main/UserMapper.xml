@@ -5,5 +5,8 @@
     <select id="getUserByUserName" resultType="uz.ibaso.blog.db.dto.UserDto">
         select screen_name, username, created_date, is_private from users where username = #{username}
         </select>
+    <insert id="insertUser" parameterType="uz.ibaso.blog.db.dto.SignUpDto">
+        insert into users (screen_name, username, password) values (#{screen_name},#{username},#{password})
+    </insert>
 
 </mapper>
